@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
 window.Form = Form;
@@ -15,9 +16,17 @@ window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
-
+//vue router
 import VueRouter from  'vue-router'
 Vue.use(VueRouter)
+
+//progressbar
+import VueProgressBar from 'vue-progressbar';
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '3px'
+})
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue') },
@@ -29,6 +38,13 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 })
 
+//global filter
+Vue.filter('upText', function (text) {
+    return text.charAt(0).toUpperCase() + text.slice(1)
+})
+Vue.filter('myDate', function (fDate) {
+    return moment(fDate).format('MMMM Do YYYY');
+})
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
