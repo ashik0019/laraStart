@@ -11,6 +11,20 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
+//sweet alert
+import swal from 'sweetalert2';
+window.swal = swal;
+
+const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+window.toast = toast;
+
+
+
 window.Form = Form;
 //global component
 Vue.component(HasError.name, HasError)
@@ -45,6 +59,9 @@ Vue.filter('upText', function (text) {
 Vue.filter('myDate', function (fDate) {
     return moment(fDate).format('MMMM Do YYYY');
 })
+
+// custom event
+window.Fire =  new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
