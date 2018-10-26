@@ -11,6 +11,9 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
+import Get from "./Gate";
+Vue.prototype.$gate = new  Get(window.user);
+
 //sweet alert
 import swal from 'sweetalert2';
 window.swal = swal;
@@ -29,6 +32,8 @@ window.Form = Form;
 //global component
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+//vue pagination
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 //vue router
 import VueRouter from  'vue-router'
@@ -83,6 +88,10 @@ Vue.component(
 Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
+);
+Vue.component(
+    'not-found',
+    require('./components/NotFound.vue')
 );
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
